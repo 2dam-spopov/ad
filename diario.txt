@@ -17,3 +17,8 @@ configurar git
 	git config --global user.email 2dam.spopov@institutoserpis.org
 	git config --global push.default simple
 
+
+	git add.
+	status
+	git commit -m "comentarios"
+	git push
