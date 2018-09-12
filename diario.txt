@@ -1,0 +1,19 @@
+20180911
+	sudo update-pc
+		instalado monodevelop y prerequisitos de android-studio
+	bitnami.com
+		descargar lamp
+		instalar: marcar bit de ejecución, doble click y esperar.
+		usuario:root
+		password: sistemas
+		crear base de datos dbprueba
+		crear tabla categoria
+	instalar git
+
+20181011
+
+configurar git
+	git config --global user.name 2dam-spopov
+	git config --global user.email 2dam.spopov@institutoserpis.org
+	git config --global push.default simple
+
