@@ -2,9 +2,10 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Reflection;
 
 using CCategoria;
-using System.Reflection;
+
 
 public partial class MainWindow : Gtk.Window
 {
@@ -15,8 +16,9 @@ public partial class MainWindow : Gtk.Window
 		new CategoriaWindow();
 
 
-        dbConnection = new MySqlConnection("server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none");
+        App.Instance.DbConnection = new MySqlConnection("server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none");
         dbConnection.Open();
+		new CategoriaWindow();
 		//insert();
 		//update();
 		//delete();

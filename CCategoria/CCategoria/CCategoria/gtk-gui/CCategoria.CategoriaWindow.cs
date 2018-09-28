@@ -12,13 +12,13 @@ namespace CCategoria
 
 		private global::Gtk.Table table2;
 
-		private global::Gtk.Entry entry1;
+		private global::Gtk.Label entryNombre;
 
-		private global::Gtk.Label label1;
+		private global::Gtk.Entry entryNombre1;
 
 		private global::Gtk.HButtonBox hbuttonbox3;
 
-		private global::Gtk.Button button3;
+		private global::Gtk.Button buttonSave;
 
 		protected virtual void Build()
 		{
@@ -43,23 +43,23 @@ namespace CCategoria
 			this.table2.RowSpacing = ((uint)(6));
 			this.table2.ColumnSpacing = ((uint)(6));
 			// Container child table2.Gtk.Table+TableChild
-			this.entry1 = new global::Gtk.Entry();
-			this.entry1.CanFocus = true;
-			this.entry1.Name = "entry1";
-			this.entry1.IsEditable = true;
-			this.entry1.InvisibleChar = '•';
-			this.table2.Add(this.entry1);
-			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table2[this.entry1]));
-			w2.LeftAttach = ((uint)(1));
-			w2.RightAttach = ((uint)(2));
+			this.entryNombre = new global::Gtk.Label();
+			this.entryNombre.Name = "entryNombre";
+			this.entryNombre.LabelProp = global::Mono.Unix.Catalog.GetString("Nombre");
+			this.table2.Add(this.entryNombre);
+			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table2[this.entryNombre]));
+			w2.XOptions = ((global::Gtk.AttachOptions)(4));
 			w2.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
-			this.label1 = new global::Gtk.Label();
-			this.label1.Name = "label1";
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString("label1");
-			this.table2.Add(this.label1);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table2[this.label1]));
-			w3.XOptions = ((global::Gtk.AttachOptions)(4));
+			this.entryNombre1 = new global::Gtk.Entry();
+			this.entryNombre1.CanFocus = true;
+			this.entryNombre1.Name = "entryNombre1";
+			this.entryNombre1.IsEditable = true;
+			this.entryNombre1.InvisibleChar = '•';
+			this.table2.Add(this.entryNombre1);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table2[this.entryNombre1]));
+			w3.LeftAttach = ((uint)(1));
+			w3.RightAttach = ((uint)(2));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.vbox3.Add(this.table2);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.table2]));
@@ -71,14 +71,14 @@ namespace CCategoria
 			this.hbuttonbox3.Name = "hbuttonbox3";
 			this.hbuttonbox3.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child hbuttonbox3.Gtk.ButtonBox+ButtonBoxChild
-			this.button3 = new global::Gtk.Button();
-			this.button3.CanFocus = true;
-			this.button3.Name = "button3";
-			this.button3.UseStock = true;
-			this.button3.UseUnderline = true;
-			this.button3.Label = "gtk-save";
-			this.hbuttonbox3.Add(this.button3);
-			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.button3]));
+			this.buttonSave = new global::Gtk.Button();
+			this.buttonSave.CanFocus = true;
+			this.buttonSave.Name = "buttonSave";
+			this.buttonSave.UseStock = true;
+			this.buttonSave.UseUnderline = true;
+			this.buttonSave.Label = "gtk-save";
+			this.hbuttonbox3.Add(this.buttonSave);
+			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.buttonSave]));
 			w5.Expand = false;
 			w5.Fill = false;
 			this.vbox3.Add(this.hbuttonbox3);
@@ -94,6 +94,7 @@ namespace CCategoria
 			this.DefaultWidth = 410;
 			this.DefaultHeight = 78;
 			this.Show();
+			this.buttonSave.Clicked += new global::System.EventHandler(this.OnButtonSaveClicked);
 		}
 	}
 }

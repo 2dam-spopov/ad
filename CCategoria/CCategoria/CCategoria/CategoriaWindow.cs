@@ -7,6 +7,13 @@ namespace CCategoria
                 base(Gtk.WindowType.Toplevel)
         {
             this.Build();
+			buttonSave.Click+=delegate {
+
+			};
         }
-    }
+
+		protected void OnButtonSaveClicked(object sender, EventArgs e){
+			Console.WriteLine("Nombre=" + entryNombre1.Text);
+		}
+	}
 }
