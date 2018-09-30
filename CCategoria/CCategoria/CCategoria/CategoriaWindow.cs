@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Data;
+
+using Serpis.Ad;
+
 namespace CCategoria
 {
     public partial class CategoriaWindow : Gtk.Window
@@ -8,12 +12,12 @@ namespace CCategoria
         {
             this.Build();
 			buttonSave.Click+=delegate {
+             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
+                dbCommand.CommandText = "insert into categoria (nombre) values (@nombre)";
+				DbCommandHelper.AddParameter(dbCommand, "nombre", entryNombre.Text);
+                int filas = dbCommand.ExecuteNonQuery();
 
 			};
         }
-
-		protected void OnButtonSaveClicked(object sender, EventArgs e){
-			Console.WriteLine("Nombre=" + entryNombre1.Text);
-		}
 	}
 }

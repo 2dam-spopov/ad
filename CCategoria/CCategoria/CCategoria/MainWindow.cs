@@ -5,7 +5,7 @@ using System.Data;
 using System.Reflection;
 
 using CCategoria;
-
+using Serpis.Ad;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -17,22 +17,22 @@ public partial class MainWindow : Gtk.Window
 
 
         App.Instance.DbConnection = new MySqlConnection("server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none");
-        dbConnection.Open();
+        App.Instance.DbConnection.Open();
 		new CategoriaWindow();
 		//insert();
 		//update();
 		//delete();
 		update(new Categoria(3, "categoria 3" + DateTime.Now));
-		TreeViewHelper.Fill(treeView, propertyNames, CategoriaDao.List);
+		//TreeViewHelper.Fill(treeView, property, CategoriaDao.List);
 
 		CellRendererText cellRendererText = new CellRendererText();
 
 
 		string[] properties = new string[] { "Id", "Nombre" };
 		foreach(string property in properties){
-			string propertyName = property;
+			
 			treeView.AppendColumn(
-				propertyName,
+				property,
                 cellRendererText,
                 delegate (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
                 object model = tree_model.GetValue(iter, 0);
@@ -41,7 +41,7 @@ public partial class MainWindow : Gtk.Window
             });
 		}
         
-		ListStore listStore = new ListStore(typeof(Categoria));
+		ListStore listStore = new ListStore(typeof(object));
 
 		treeView.Model = listStore;
 
@@ -59,43 +59,35 @@ public partial class MainWindow : Gtk.Window
 		}
 
 
-		dbConnection.Close();
-	}
+	
 
 	private void insert(){
-		IDbCommand dbCommand = dbConnection.CreateCommand();
+		IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
 		dbCommand.CommandText = "insert into categoria (Nombre) values ('categoria4')";
 		int numeroFilas = dbCommand.ExecuteNonQuery();
 	}
 	private void update() {
-        IDbCommand dbCommand = dbConnection.CreateCommand();
+        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
         dbCommand.CommandText = "update categoria set nombre='categoria 4 modificada' where id=4";
         dbCommand.ExecuteNonQuery();
     }
 	private void update(Categoria categoria){
-        IDbCommand dbCommand = dbConnection.CreateCommand();
+        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
 		dbCommand.CommandText = "update categoria set nombre=@nombre where id=@id";
 
-		IDbDataParameter dbDataParameterNombre=dbCommand.CreateParameter();
-		dbDataParameterNombre.ParameterName = "nombre";
-		dbDataParameterNombre.Value = categoria.Nombre;
-		dbCommand.Parameters.Add(dbDataParameterNombre);
-
-		IDbDataParameter dbDataParameterId = dbCommand.CreateParameter();
-        dbDataParameterId.ParameterName = "id";
-        dbDataParameterId.Value = categoria.Id;
-        dbCommand.Parameters.Add(dbDataParameterId);
-
-        dbCommand.ExecuteNonQuery();
+		DbCommandHelper.AddParameter(dbCommand, "nombre", categoria.Nombre);
+		DbCommandHelper.AddParameter(dbCommand, "id", categoria.Id);
+		dbCommand.ExecuteNonQuery();
     }
 	private void delete() {
-        IDbCommand dbCommand = dbConnection.CreateCommand();
+        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
         dbCommand.CommandText = "delete from categoria where id=4";
         dbCommand.ExecuteNonQuery();
     }
 
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)  {
+       App.Instance.DbConnection.Close();
         Application.Quit();
         a.RetVal = true;
     }
