@@ -1,30 +1,51 @@
 ﻿using Gtk;
-using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using CCategoria;
 using Serpis.Ad;
+using System.Reflection;
 
 
 public partial class MainWindow : Gtk.Window{
-    private IDbConnection dbConnection;
-    public MainWindow() : base(Gtk.WindowType.Toplevel){
-        Build();      
-        App.Instance.DbConnection = new MySqlConnection("server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none");
+
+
+        public MainWindow() : base(Gtk.WindowType.Toplevel){
+        Build();
+        Title = "Categoría";
+
 		App.Instance.DbConnection.Open();
+
+             
 		TreeViewHelper.Fill(treeView, new string[] {"Id", "Nombre"}, CategoriaDao.Categorias);
         
         newAction.Activated+= delegate {
-			Categoria categoria = new Categoria();
-            categoria.Nombre = "nueva categoria";
+            new CategoriaWindow(new Categoria());
         };
         editAction.Activated+=delegate {
-            object id = GetId(treeView);
-			Console.WriteLine("Id = " + id);
+            
+            object id = TreeViewHelper.GetId(treeView);
+            Console.WriteLine("Id=" + id);
             Categoria categoria = CategoriaDao.Load(id);
             new CategoriaWindow(categoria);
 
 		};
+
+
+        deleteAction.Activated+=delegate {
+        
+            object id = TreeViewHelper.GetId(treeView);
+            if(WindowHelper.Confirm(this, "¿Eliminar?")){
+                
+            }
+        };
+
+
+
+        refreshAction.Activated+=delegate {
+            TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.Categorias);
+        } ;
+
+
         treeView.Selection.Changed+=delegate {
 			refreshUI();
         };
@@ -32,17 +53,6 @@ public partial class MainWindow : Gtk.Window{
         refreshUI();
     }
 
-	public static object GetId(TreeView treeView){
-		return Get(treeView, "Id");
-	}
-	public static object Get(TreeView treeView, string propertyName){
-
-		if(!treeView.Selection.GetSelected(out TreeIter treeIter)){
-			return null;
-		}
-        object model =treeView.Model.GetValue(treeIter, 0);
-        return model.GetType().GetProperty(propertyName).GetValue(model);
-	}
 
 	private void refreshUI(){
 		bool treeViewIsSelected = treeView.Selection.CountSelectedRows() > 0;
@@ -52,12 +62,12 @@ public partial class MainWindow : Gtk.Window{
 
 
 	private void insert(){
-		IDbCommand dbCommand = dbConnection.CreateCommand();
+		IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
 		dbCommand.CommandText = "insert into categoria (Nombre) values ('categoria4')";
 		int numeroFilas = dbCommand.ExecuteNonQuery();
 	}
 	private void update() {
-        IDbCommand dbCommand = dbConnection.CreateCommand();
+        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
         dbCommand.CommandText = "update categoria set nombre='categoria 4 modificada' where id=4";
         dbCommand.ExecuteNonQuery();
     }
@@ -76,7 +86,6 @@ public partial class MainWindow : Gtk.Window{
 
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)  {
-		App.Instance.DbConnection.Close();
 		Application.Quit();
         a.RetVal = true;
     }

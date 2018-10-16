@@ -4,8 +4,10 @@
     <images-root-path>..</images-root-path>
   </configuration>
   <import>
-    <widget-library name="../bin/Debug/CCategoria.exe" internal="true" />
     <widget-library name="../../../../CSerpisGtk/CSerpisGtk/bin/Debug/CSerpisGtk.dll" />
+    <widget-library name="../../../../CSerpisGtk/CSerpisGtk/bin/Debug/CSerpisGtk.dll" />
+    <widget-library name="../../../../CSerpisGtk/CSerpisGtk/bin/Debug/CSerpisGtk.dll" />
+    <widget-library name="../bin/Debug/CCategoria.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
     <action-group name="Default">

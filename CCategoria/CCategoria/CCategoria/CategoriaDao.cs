@@ -52,6 +52,7 @@ namespace CCategoria{
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
             dbCommand.CommandText = updateSql;
             DbCommandHelper.AddParameter(dbCommand, "nombre", categoria.Nombre);
+            DbCommandHelper.AddParameter(dbCommand, "id", categoria.Id);
             dbCommand.ExecuteNonQuery();
         }
     }
