@@ -4,7 +4,8 @@ namespace CCategoria
     public class Categoria
     {
 		private ulong id;
-		private string nombre;
+		private string nombre=""
+            ;
 		public Categoria(){
 			
 		}

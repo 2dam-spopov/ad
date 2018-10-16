@@ -12,9 +12,9 @@ namespace CCategoria
 
 		private global::Gtk.Table table2;
 
-		private global::Gtk.Label entryNombre;
+		private global::Gtk.Entry entryNombre;
 
-		private global::Gtk.Entry entryNombre1;
+		private global::Gtk.Label label;
 
 		private global::Gtk.HButtonBox hbuttonbox3;
 
@@ -43,23 +43,23 @@ namespace CCategoria
 			this.table2.RowSpacing = ((uint)(6));
 			this.table2.ColumnSpacing = ((uint)(6));
 			// Container child table2.Gtk.Table+TableChild
-			this.entryNombre = new global::Gtk.Label();
+			this.entryNombre = new global::Gtk.Entry();
+			this.entryNombre.CanFocus = true;
 			this.entryNombre.Name = "entryNombre";
-			this.entryNombre.LabelProp = global::Mono.Unix.Catalog.GetString("Nombre");
+			this.entryNombre.IsEditable = true;
+			this.entryNombre.InvisibleChar = '•';
 			this.table2.Add(this.entryNombre);
 			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table2[this.entryNombre]));
-			w2.XOptions = ((global::Gtk.AttachOptions)(4));
+			w2.LeftAttach = ((uint)(1));
+			w2.RightAttach = ((uint)(2));
 			w2.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
-			this.entryNombre1 = new global::Gtk.Entry();
-			this.entryNombre1.CanFocus = true;
-			this.entryNombre1.Name = "entryNombre1";
-			this.entryNombre1.IsEditable = true;
-			this.entryNombre1.InvisibleChar = '•';
-			this.table2.Add(this.entryNombre1);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table2[this.entryNombre1]));
-			w3.LeftAttach = ((uint)(1));
-			w3.RightAttach = ((uint)(2));
+			this.label = new global::Gtk.Label();
+			this.label.Name = "label";
+			this.label.LabelProp = global::Mono.Unix.Catalog.GetString("Nombre");
+			this.table2.Add(this.label);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table2[this.label]));
+			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.vbox3.Add(this.table2);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.table2]));
@@ -94,7 +94,6 @@ namespace CCategoria
 			this.DefaultWidth = 410;
 			this.DefaultHeight = 78;
 			this.Show();
-			this.buttonSave.Clicked += new global::System.EventHandler(this.OnButtonSaveClicked);
 		}
 	}
 }

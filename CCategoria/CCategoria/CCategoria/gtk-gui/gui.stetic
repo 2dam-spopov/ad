@@ -5,6 +5,7 @@
   </configuration>
   <import>
     <widget-library name="../bin/Debug/CCategoria.exe" internal="true" />
+    <widget-library name="../../../../CSerpisGtk/CSerpisGtk/bin/Debug/CSerpisGtk.dll" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
     <action-group name="Default">
@@ -12,6 +13,21 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-new</property>
+      </action>
+      <action id="deleteAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-delete</property>
+      </action>
+      <action id="refreshAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-refresh</property>
+      </action>
+      <action id="editAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-edit</property>
       </action>
     </action-group>
     <property name="MemberName" />
@@ -28,6 +44,9 @@
             <property name="ShowArrow">False</property>
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="newAction" />
+              <node type="Toolitem" action="editAction" />
+              <node type="Toolitem" action="deleteAction" />
+              <node type="Toolitem" action="refreshAction" />
             </node>
           </widget>
           <packing>
@@ -82,24 +101,7 @@
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
             <child>
-              <widget class="Gtk.Label" id="entryNombre">
-                <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Nombre</property>
-              </widget>
-              <packing>
-                <property name="AutoSize">True</property>
-                <property name="XOptions">Fill</property>
-                <property name="YOptions">Fill</property>
-                <property name="XExpand">False</property>
-                <property name="XFill">True</property>
-                <property name="XShrink">False</property>
-                <property name="YExpand">False</property>
-                <property name="YFill">True</property>
-                <property name="YShrink">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Entry" id="entryNombre1">
+              <widget class="Gtk.Entry" id="entryNombre">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
@@ -111,6 +113,23 @@
                 <property name="AutoSize">True</property>
                 <property name="YOptions">Fill</property>
                 <property name="XExpand">True</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Nombre</property>
+              </widget>
+              <packing>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
                 <property name="XFill">True</property>
                 <property name="XShrink">False</property>
                 <property name="YExpand">False</property>
@@ -138,7 +157,6 @@
                 <property name="UseStock">True</property>
                 <property name="Type">StockItem</property>
                 <property name="StockId">gtk-save</property>
-                <signal name="Clicked" handler="OnButtonSaveClicked" />
                 <property name="label">gtk-save</property>
               </widget>
               <packing>
