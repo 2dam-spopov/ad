@@ -35,7 +35,6 @@ namespace CCategoria
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child CCategoria.CategoriaWindow.Gtk.Container+ContainerChild
 			this.vbox3 = new global::Gtk.VBox();
-			this.vbox3.Name = "vbox3";
 			this.vbox3.Spacing = 6;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.table2 = new global::Gtk.Table(((uint)(1)), ((uint)(2)), false);
