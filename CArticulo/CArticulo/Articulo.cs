@@ -4,7 +4,7 @@ namespace Serpis.Ad.Ventas {
         private ulong id;
         private string nombre = "";
         private decimal precio = 0;
-       // private ulong? categoria = null;
+        private ulong? categoria = null;
 
         public ulong Id {
             get { return id; }
@@ -19,9 +19,9 @@ namespace Serpis.Ad.Ventas {
             get { return precio; }
             set { precio = value; }
         }
-        //public ulong? Categoria{
-        //    get { return categoria; }
-        //    set { categoria = value; }
-        //}
+        public ulong? Categoria{
+            get { return categoria; }
+            set { categoria = value; }
+        }
     }
 }
