@@ -4,7 +4,7 @@ using System;
 
 using Serpis.Ad;
 
-namespace CArticulo
+namespace CCategoria
 {
     class MainClass
     {
@@ -15,6 +15,7 @@ namespace CArticulo
             );
 
             App.Instance.DbConnection.Open();
+
 
             Application.Init();
             MainWindow win = new MainWindow();
