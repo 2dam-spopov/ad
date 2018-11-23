@@ -32,4 +32,25 @@ public class prueba {
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 	}
+	
+	private static void load() throws SQLException {
+		String selectSql = "select * from value (?)";
+		PreparedStatement preparedStatement = connection.prepareStatement(selectSql);
+		preparedStatement.close();
+		}
+
+		private static void delete(int id){
+		String deleteSql="delete from categoria where id=?";
+		PreparedStatement preparedStatement;
+
+		try {
+		preparedStatement=connection.prepareStatement(deleteSql);
+		preparedStatement.setInt(1, id);
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+		}catch (SQLException e) {
+		System.out.println(e);
+		System.out.println("No se puede por el foreign key");
+		}
+		}
 }
