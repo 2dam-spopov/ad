@@ -1,13 +1,14 @@
 package modelo;
 
 import java.sql.*;
-import controlador.*;
 
-public class CargaSecciones {
+public class CargaMenus {
 
-	Conexion miConexion;
-	private ResultSet rs;
-	public CargaSecciones() {
+	public Conexion miConexion;
+	public ResultSet rs;
+	public ResultSet rs2;
+	
+	public CargaMenus() {
 		miConexion = new Conexion();
 	}
 
@@ -18,16 +19,23 @@ public class CargaSecciones {
 		try {
 			
 			Statement secciones = accesoBBDD.createStatement();
-			rs=secciones.executeQuery("select distinctrow sección from productos");
+			Statement paises = accesoBBDD.createStatement();
 			
-			while(rs.next()) {
+			rs=secciones.executeQuery("select distinctrow sección from productos");
+			rs2=paises.executeQuery("select distinctrow paísdeorigen from productos");
+			
+			//while(rs.next()) {
+				//rs.previous();//Mueve el cursor una posición atrás.
 				miProducto = new Productos();
 				miProducto.setSeccion(rs.getString(1));
+				miProducto.setpOrigen(rs2.getString(1));
 				
-				return miProducto.getSeccion();
+				//return miProducto.getSeccion();
 				
-			}
+			//}
 			rs.close();
+			rs2.close();
+			accesoBBDD.close();
 			
 		}catch(Exception e){
 			

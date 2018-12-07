@@ -1,4 +1,4 @@
-package controlador;
+package modelo;
 
 import java.sql.*;
 
@@ -16,6 +16,8 @@ public class Conexion {
 			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:8889/prueba?useSSL=false", "root",
 					"cbb74bc");
 		} catch (Exception e) {
+			System.out.println("EL ERROR ESTÁ AQUÍ");
+			e.printStackTrace();
 
 		}
 		return miConexion;

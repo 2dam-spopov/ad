@@ -4,13 +4,15 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import controlador.*;
+
 public class Marco_Aplicacion2 extends JFrame {
 
-	private JComboBox secciones;
+	public JComboBox secciones;
 
-	private JComboBox paises;
+	public JComboBox paises;
 
-	private JTextArea resultado;
+	public JTextArea resultado;
 
 	public Marco_Aplicacion2() {
 
@@ -53,7 +55,10 @@ public class Marco_Aplicacion2 extends JFrame {
 		JButton botonConsulta = new JButton("Consulta");
 
 		add(botonConsulta, BorderLayout.SOUTH);
+		
+		addWindowListener(new ControladorCargaMenus(this));
 
+		botonConsulta.addActionListener(new ControladorBotonEjecuta(this));
 	}
 
 }
