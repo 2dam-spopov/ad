@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author mbp
+ *
+ */
+module ejercicioHibernate {
+}
